@@ -1,0 +1,33 @@
+{
+  "name": "@polyjuice-provider/godwoken",
+  "version": "0.0.1-rc6",
+  "description": "Godwoken utils",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo 'no test for godwoken'",
+    "fmt": "prettier --write \"src/**/*.ts\" package.json",
+    "lint": "eslint -c ../../.eslintrc.js \"src/**/*.ts\"",
+    "clean": "rm -rf lib",
+    "build": "tsc",
+    "publish": "npm publish",
+    "test-publish": "npm publish --dry-run",
+    "pack": "npm pack"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://registry.npmjs.org/"
+  },
+  "files": [
+    "/lib",
+    "index.js",
+    "index.d.ts",
+    "/schemas"
+  ],
+  "dependencies": {
+    "@ckb-lumos/base": "^0.16.0",
+    "ckb-js-toolkit": "^0.9.3",
+    "immutable": "^4.0.0-rc.12",
+    "keccak256": "^1.0.2"
+  }
+}

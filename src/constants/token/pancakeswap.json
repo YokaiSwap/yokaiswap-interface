@@ -1,0 +1,150 @@
+{
+  "name": "YokaiSwap Default List",
+  "timestamp": "2021-08-18T08:11:07Z",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "https://exchange-dev.yokaiswap.com/images/yokaiswap.png",
+  "keywords": [
+    "yokaiswap",
+    "default"
+  ],
+  "tokens": [
+    {
+      "name": "Wrapped CKB",
+      "symbol": "WCKB",
+      "address": "0x41b81Bc77E6426bD15cd18307DC20e7181676B94",
+      "chainId": 1024777,
+      "decimals": 8,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/ckb.png"
+    },
+    {
+      "name": "Wrapped CKB",
+      "symbol": "WCKB",
+      "address": "0x7417e92923952a3d65bffAb3f34D2Bd77497c890",
+      "chainId": 71393,
+      "decimals": 8,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/ckb.png"
+    },
+    {
+      "name": "Nervos-Peg Ethereum Token",
+      "symbol": "ETH",
+      "address": "0x897F8be9456c84C24044B88A5af4ec6534D2DEAA",
+      "chainId": 1024777,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/eth.png"
+    },
+    {
+      "name": "Nervos-Peg Ethereum Token",
+      "symbol": "ETH",
+      "address": "0xfF313383879C1214F7AeCfE2E3174274339218c3",
+      "chainId": 1024777,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/eth.png"
+    },
+    {
+      "name": "YokaiSwap Token",
+      "symbol": "YOK",
+      "address": "0x37D8a33814eBC6BB300a734237DA60730c91d0a8",
+      "chainId": 1024777,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/yok.png"
+    },
+    {
+      "name": "YokaiSwap Token",
+      "symbol": "YOK",
+      "address": "0xc5e133E6B01b2C335055576C51A53647B1b9b624",
+      "chainId": 71393,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/yok.png"
+    },
+    {
+      "name": "Nervos-Peg USD Coin",
+      "symbol": "USDC",
+      "address": "0x6546A8B1C37704605eB80F8041BD55657141B158",
+      "chainId": 1024777,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/usdc.png"
+    },
+    {
+      "name": "Nervos-Peg USD Coin",
+      "symbol": "USDC",
+      "address": "0xca6FcAAA5129aD9e5219397527A17c26E5AD6a6a",
+      "chainId": 71393,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/usdc.png"
+    },
+    {
+      "name": "Nervos-Peg Solana Tether USD",
+      "symbol": "solUSDT",
+      "address": "0x6e162442cfa8bf296082489EcB9353a646DaE067",
+      "chainId": 1024777,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/usdt.png"
+    },
+    {
+      "name": "Nervos-Peg Solana Tether USD",
+      "symbol": "solUSDT",
+      "address": "0x1A0E713d9c91e23c891BDd9e59Db2f1A307417fb",
+      "chainId": 71393,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/0x1A0E713d9c91e23c891BDd9e59Db2f1A307417fb.png"
+    },
+    {
+      "name": "Nervos-Peg Ethereum Tether USD",
+      "symbol": "ethUSDT",
+      "address": "0x8f32999d296512b912B2B78F6C342555b420E762",
+      "chainId": 1024777,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/usdt.png"
+    },
+    {
+      "name": "Nervos-Peg Ethereum Tether USD",
+      "symbol": "ethUSDT",
+      "address": "0xeC8bF93B774a353Fd7244A7e427C021287779b77",
+      "chainId": 71393,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/usdt.png"
+    },
+    {
+      "name": "Nervos-Peg Tether USD",
+      "symbol": "USDT",
+      "address": "0xC72d93A333E13cFe3364Abc70157b39147957a92",
+      "chainId": 1024777,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/usdt.png"
+    },
+    {
+      "name": "Nervos-Peg Tether USD",
+      "symbol": "USDT",
+      "address": "0x3380EA6631D4Aa6C6fE0E4eF7600896ad530093A",
+      "chainId": 71393,
+      "decimals": 18,
+      "logoURI": "https://exchange-dev.yokaiswap.com/images/coins/usdt.png"
+    },
+    {
+      "name": "NexisDAO CKB",
+      "symbol": "dCKB",
+      "address": "0x5716B1187182090d0C5D95d8bc58c71ac8c43C22",
+      "chainId": 71393,
+      "decimals": 8
+    },
+    {
+      "name": "NexisDAO TAI",
+      "symbol": "TAI",
+      "address": "0x8290f27935A2D353adc834c9F3c5F6ef19635C2D",
+      "chainId": 71393,
+      "decimals": 8
+    },
+    {
+      "name": "Meow Meow Meow",
+      "symbol": "MEOW",
+      "address": "0x184Fc3C0B889f2a665e2584Fe4c45FEfB35C76A2",
+      "chainId": 71393,
+      "decimals": 18
+    }
+  ]
+}

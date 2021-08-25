@@ -1,0 +1,4 @@
+2c2
+<   private constructor(length: number, sign: boolean);
+---
+>   public constructor(length: number, sign: boolean);
