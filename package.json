@@ -7,8 +7,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "mv:godwoken": "cp -r godwoken ./node_modules/",
-    "postinstall": "sh patches/patch-all.sh && mv:godwoken",
+    "cp:godwoken": "copy godwoken/**/* ./node_modules/",
+    "postinstall": "patch-package && yarn cp:godwoken",
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
@@ -88,9 +88,12 @@
     "@pancakeswap-libs/eslint-config-pancake": "1.0.0",
     "@types/jest": "^26.0.20",
     "@types/testing-library__cypress": "^5.0.8",
+    "copy": "^0.3.2",
     "cypress": "^4.11.0",
     "eslint": "^7.2.0",
     "husky": "4.3.5",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "^2.1.2",
     "qs": "^6.9.4",
     "serve": "^11.3.0",

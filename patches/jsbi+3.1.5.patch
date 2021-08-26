@@ -1,0 +1,11 @@
+diff --git a/node_modules/jsbi/jsbi.d.ts b/node_modules/jsbi/jsbi.d.ts
+index d2d5c3e..cd784ea 100644
+--- a/node_modules/jsbi/jsbi.d.ts
++++ b/node_modules/jsbi/jsbi.d.ts
+@@ -1,5 +1,5 @@
+ export default class JSBI {
+-  private constructor(length: number, sign: boolean);
++  public constructor(length: number, sign: boolean);
+   private length: number;
+   private sign: boolean;
+ 

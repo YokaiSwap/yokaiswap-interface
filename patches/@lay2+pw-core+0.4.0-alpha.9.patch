@@ -1,0 +1,128 @@
+diff --git a/node_modules/@lay2/pw-core/build/main/collectors/collector.d.ts b/node_modules/@lay2/pw-core/build/main/collectors/collector.d.ts
+index 8c7cc88..85bd37a 100644
+--- a/node_modules/@lay2/pw-core/build/main/collectors/collector.d.ts
++++ b/node_modules/@lay2/pw-core/build/main/collectors/collector.d.ts
+@@ -1,4 +1,4 @@
+-import { Cell, Address, Amount } from '../models';
++import { Cell, Address, Amount, SUDT } from '@lay2/pw-core/build/main/models';
+ export interface CollectorOptions {
+     neededAmount?: Amount;
+     withData?: boolean;
+@@ -7,4 +7,5 @@ export declare abstract class Collector {
+     protected constructor();
+     abstract getBalance(address: Address): Promise<Amount>;
+     abstract collect(address: Address, options?: CollectorOptions): Promise<Cell[]>;
++    abstract collectSUDT(sudt: SUDT, address: Address, options?: CollectorOptions): Promise<Cell[]>;
+ }
+diff --git a/node_modules/@lay2/pw-core/build/module/providers/eth-provider.js b/node_modules/@lay2/pw-core/build/module/providers/eth-provider.js
+index 934cc98..4094b5b 100644
+--- a/node_modules/@lay2/pw-core/build/module/providers/eth-provider.js
++++ b/node_modules/@lay2/pw-core/build/module/providers/eth-provider.js
+@@ -10,17 +10,27 @@ export class EthProvider extends Provider {
+         if (typeof window.ethereum !== 'undefined') {
+             window.ethereum.autoRefreshOnNetworkChange = false;
+             // const accounts = await window.ethereum.enable();
+-            const accounts = await window.ethereum.request({
+-                method: 'eth_requestAccounts',
+-            });
+-            this.address = new Address(accounts[0], AddressType.eth);
+-            if (!!window.ethereum.on) {
+-                window.ethereum.on('accountsChanged', (newAccounts) => {
+-                    this.address = new Address(newAccounts[0], AddressType.eth);
+-                    if (!!this.onAddressChanged) {
+-                        this.onAddressChanged(this.address);
+-                    }
++            try {
++                const accounts = await window.ethereum.request({
++                    method: 'eth_requestAccounts',
+                 });
++                this.address = new Address(accounts[0], AddressType.eth);
++                if (!!window.ethereum.on) {
++                    window.ethereum.on('accountsChanged', (newAccounts) => {
++                        this.address = new Address(newAccounts[0], AddressType.eth);
++                        if (!!this.onAddressChanged) {
++                            this.onAddressChanged(this.address);
++                        }
++                    });
++                }
++            } catch(err) {
++                if (err != null && err.code != null && err.code === -32002) {
++                    return new Promise((resolve) => {
++                        window.setTimeout(() => {
++                            resolve(this.init())
++                        }, 1000)
++                    })
++                }
+             }
+             return this;
+         }
+@@ -30,6 +40,7 @@ export class EthProvider extends Provider {
+                 window.web3.eth.getAccounts((err, result) => {
+                     if (!!err) {
+                         reject(err);
++                        return;
+                     }
+                     resolve(result);
+                 });
+@@ -67,16 +78,21 @@ export class EthProvider extends Provider {
+                 window.ethereum
+                     .request({ method: 'personal_sign', params: [from, message] })
+                     .then((result) => {
+-                    resolve(handleResult(result));
++                        resolve(handleResult(result));
++                    })
++                    .catch((err) => {
++                        reject(err);
+                 });
+             }
+             else if (!!window.web3) {
+                 window.web3.currentProvider.sendAsync({ method: 'personal_sign', params: [message, from], from }, (err, result) => {
+                     if (err) {
+                         reject(err);
++                        return;
+                     }
+                     if (result.error) {
+                         reject(result.error);
++                        return;
+                     }
+                     resolve(handleResult(result.result));
+                 });
+diff --git a/node_modules/@lay2/pw-core/build/module/signers/eth-signer.js b/node_modules/@lay2/pw-core/build/module/signers/eth-signer.js
+index fcb1eb0..b6d1f48 100644
+--- a/node_modules/@lay2/pw-core/build/module/signers/eth-signer.js
++++ b/node_modules/@lay2/pw-core/build/module/signers/eth-signer.js
+@@ -56,6 +56,9 @@ export class EthSigner extends Signer {
+                 })
+                     .then((result) => {
+                     resolve([handleResult(result)]);
++                })
++                    .catch((err) => {
++                    reject(err);
+                 });
+             }
+             else if (!!window.web3) {
+@@ -66,9 +69,11 @@ export class EthSigner extends Signer {
+                 }, (err, result) => {
+                     if (err) {
+                         reject(err);
++                        return;
+                     }
+                     if (result.error) {
+                         reject(result.error);
++                        return;
+                     }
+                     resolve([handleResult(result.result)]);
+                 });
+diff --git a/node_modules/@lay2/pw-core/build/module/signers/signer.js b/node_modules/@lay2/pw-core/build/module/signers/signer.js
+index f49b2fd..5810fcc 100644
+--- a/node_modules/@lay2/pw-core/build/module/signers/signer.js
++++ b/node_modules/@lay2/pw-core/build/module/signers/signer.js
+@@ -14,7 +14,7 @@ export class Signer {
+                 typeof tx.witnessArgs[index] !== 'string') {
+                 witnesses[i] = new Reader(SerializeWitnessArgs(normalizers.NormalizeWitnessArgs({
+                     ...tx.witnessArgs[index],
+-                    lock: witnesses[i],
++                    lock: witnesses[i] === "0x" ? tx.witnessArgs[index].lock : witnesses[i],
+                 }))).serializeJson();
+             }
+         }
