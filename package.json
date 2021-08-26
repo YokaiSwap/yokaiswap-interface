@@ -7,7 +7,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "cp:godwoken": "copy godwoken/**/* ./node_modules/",
+    "cp:godwoken": "copy \"godwoken/**/*\" \"node_modules/godwoken\"",
     "postinstall": "patch-package && yarn cp:godwoken",
     "start": "react-scripts start",
     "build": "react-scripts build"

@@ -1,5 +1,5 @@
 {
-  "name": "@polyjuice-provider/godwoken",
+  "name": "godwoken",
   "version": "0.0.1-rc6",
   "description": "Godwoken utils",
   "main": "index.js",
