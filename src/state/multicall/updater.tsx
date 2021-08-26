@@ -17,7 +17,7 @@ import {
 } from './actions'
 
 // chunk calls so we do not exceed the gas limit
-const CALL_CHUNK_SIZE = 500
+const CALL_CHUNK_SIZE = 40
 
 /**
  * Fetches a chunk of calls, enforcing a minimum block number constraint
@@ -65,7 +65,7 @@ export function activeListeningKeys(
   return Object.keys(listeners).reduce<{ [callKey: string]: number }>((memo, callKey) => {
     const keyListeners = listeners[callKey]
 
-    memo[callKey] = Object.keys(keyListeners)
+    const result = Object.keys(keyListeners)
       .filter((key) => {
         const blocksPerFetch = parseInt(key)
         if (blocksPerFetch <= 0) return false
@@ -74,6 +74,10 @@ export function activeListeningKeys(
       .reduce((previousMin, current) => {
         return Math.min(previousMin, parseInt(current))
       }, Infinity)
+    if (result !== Infinity) {
+      memo[callKey] = result
+    }
+
     return memo
   }, {})
 }
