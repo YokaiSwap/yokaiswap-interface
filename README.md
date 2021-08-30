@@ -27,3 +27,7 @@ yarn start
 ```sh
 yarn build
 ```
+
+---
+
+forked from [pancakeswap/pancake-swap-interface-v1](https://github.com/pancakeswap/pancake-swap-interface-v1)
